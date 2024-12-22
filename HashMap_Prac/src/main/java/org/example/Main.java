@@ -14,7 +14,20 @@ public class Main {
         empIDs.put("Shyam", 2001);
         empIDs.put("Prasad",3001);
         empIDs.put("Puja", 4001);
+        empIDs.put("Priya", 4001);
+
         System.out.println(empIDs);
+
+        //Search Using key
+        System.out.println("Employee ID of Prasad is "+empIDs.get("Prasad"));
+
+        //See if specific key is preset in hashmap
+        System.out.println("Is vivek present in this list --> "+empIDs.containsKey("Vivek"));
+
+        //See if specific key present using its value
+        System.out.println("Is Employee ID 4001 present in List --> "+empIDs.containsValue(4001));
+
+
 
     }
 
