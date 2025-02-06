@@ -1,0 +1,7 @@
+<suite name="fullCheckout">
+    <test name="fullCheckout">
+        <classes>
+            <class name="test.FullCheckoutTest"/>
+        </classes>
+    </test>
+</suite>
