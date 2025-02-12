@@ -1,5 +1,6 @@
 package test;
 
+import io.qameta.allure.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -37,7 +38,11 @@ public class FullCheckoutTest {
 
 
 
-    @Test(dataProvider = "testData" , dataProviderClass = TestDataProvider.class)
+    @Test(dataProvider = "testData" , dataProviderClass = TestDataProvider.class,description = "To check end to end flow")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Test to validate addition of item in cart and completion of buying process")
+    @Feature("Addition of Item in cart, completion of ordering process")
+    @Story("End to End Process working properly")
     //@Test
     public void fullCheckoutTest(Map<String,String> testData){
         wait = new WebDriverWait(driver, Duration.ofMillis(2000));
