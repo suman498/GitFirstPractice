@@ -1,5 +1,6 @@
 package test;
 
+import com.aventstack.extentreports.ExtentTest;
 import io.qameta.allure.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +11,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import utils.ExtentManager;
 import utils.TestDataProvider;
 import utils.configReader;
 
@@ -23,12 +25,15 @@ public class FullCheckoutTest {
     static float perProductPrice=0;
     WebElement e;
     String[] products;
+    ExtentTest test;
 
     //loading InputExcel Data
     //inputExcelReader excel = new inputExcelReader(configReader.getProperty("inputExcelPath"),configReader.getProperty("sheetName"));
 
     @BeforeTest
     public void setUp(){
+        test= ExtentManager.createtest("End to End Automation");
+
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -47,6 +52,8 @@ public class FullCheckoutTest {
     public void fullCheckoutTest(Map<String,String> testData){
         wait = new WebDriverWait(driver, Duration.ofMillis(2000));
         try {
+            test.info("Start of End to End Test");
+
             //for Login
             testValidLogin();
 
@@ -71,6 +78,8 @@ public class FullCheckoutTest {
             //logout process
             logout();
 
+            test.info("End to End Test Completed");
+
         }
         catch (Exception e){
             e.printStackTrace();
@@ -82,6 +91,8 @@ public class FullCheckoutTest {
 
 
     public void testValidLogin() throws InterruptedException {
+        test.info("Testing of Login Scenario Started");
+
         loginPage.Login(configReader.getProperty("uid"),configReader.getProperty("pwd"));
 
         //waiting for products page
@@ -89,6 +100,8 @@ public class FullCheckoutTest {
                 By.xpath("//span[contains(text(),'Products')]")));
 
         Assert.assertTrue(driver.getCurrentUrl().contains("inventory"));
+
+        test.info("Testing of Login Scenario Completed");
 
 
 
@@ -99,6 +112,8 @@ public class FullCheckoutTest {
 
     public void addProducts(String listOfProducts) {
         try {
+            test.info("Testing of Addition of Products in Cart Scenario Started");
+
             products = listOfProducts.split(",");
 
             for (String s : products) {
@@ -127,6 +142,7 @@ public class FullCheckoutTest {
 
                 Thread.sleep(800);
 
+                test.info("Testing of Addition of Products in Cart Scenario Completed");
 
             }
 
@@ -138,6 +154,8 @@ public class FullCheckoutTest {
 
     public void cart() {
         try{
+            test.info("Testing of Clicking of Cart Scenario Started");
+
             //Click on Cart
             driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
 
@@ -145,7 +163,7 @@ public class FullCheckoutTest {
             wait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.xpath("//div/span[contains(text(),'Cart')]")));
 
-
+            test.info("Testing of Clicking of Cart Scenario Completed");
 
 
         } catch (Exception e) {
@@ -156,6 +174,8 @@ public class FullCheckoutTest {
 
     public void checkoutOne() {
         try{
+            test.info("Testing of CheckoutOne Scenario Started");
+
             //Click on Checkout button in cart page
             //JavaScript Executor Used
             e =driver.findElement(By.id("checkout"));
@@ -174,6 +194,7 @@ public class FullCheckoutTest {
                     ,"URL did not change as expected!"
             );
 
+            test.info("Testing of CheckoutOne Scenario Completed");
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -182,6 +203,9 @@ public class FullCheckoutTest {
 
     public void custDetails(String firstName, String lastName, String zipcode) {
         try{
+            test.info("Testing of entering customer details Scenario Started");
+
+
             e=driver.findElement(By.xpath("//div/span"));
             wait.until(ExpectedConditions.textToBePresentInElement(
                     e,"Checkout: Your Information"
@@ -204,7 +228,7 @@ public class FullCheckoutTest {
                     ,"URL did not change as expected!"
             );
 
-
+            test.info("Testing of entering customer details Scenario Completed");
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -213,6 +237,8 @@ public class FullCheckoutTest {
 
     public void checkoutFinal(){
         try{
+            test.info("Testing of CheckoutFinal Scenario Started");
+
             e=driver.findElement(By.xpath("//div/span"));
             wait.until(ExpectedConditions.textToBePresentInElement(
                     e,"Checkout: Overview"
@@ -267,7 +293,7 @@ public class FullCheckoutTest {
                     By.cssSelector("div[data-test='total-label']")).getText().split(":")[1]
             );
 
-
+            test.info("Testing of CheckoutFinal Scenario Completed");
 
 
 
@@ -278,6 +304,8 @@ public class FullCheckoutTest {
 
     public void finish() {
         try{
+            test.info("Testing of Complete Checkout Scenario Started");
+
             //Click on finish button
             driver.findElement(By.id("finish")).click();
 
@@ -294,6 +322,7 @@ public class FullCheckoutTest {
                     .getText());
 
 
+            test.info("Testing of Complete Checkout Scenario Completed");
 
         }catch (Exception e) {
             throw new RuntimeException(e);
@@ -302,6 +331,8 @@ public class FullCheckoutTest {
 
     public void logout(){
         try{
+            test.info("Testing of Logout Scenario Started");
+
             //top left button click
             driver.findElement(By.id("react-burger-menu-btn")).click();
             //Thread.sleep(800);
@@ -317,7 +348,7 @@ public class FullCheckoutTest {
 
             Assert.assertEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/");
 
-
+            test.info("Testing of Logout Scenario Completed");
         }
         catch (Exception e){
             throw new RuntimeException(e);
@@ -327,6 +358,7 @@ public class FullCheckoutTest {
 
     @AfterTest
     public void tearDown(){
+        ExtentManager.flushReports();
         driver.quit();
     }
 
