@@ -1,1 +1,1 @@
-[{"uid":"c0299812d52a63ca","name":"To check end to end flow","time":{"start":1739297655585,"stop":1739297660546,"duration":4961},"status":"passed","severity":"critical"}]
+[{"uid":"aee7436e6eb4f96b","name":"To check end to end flow","time":{"start":1741278527227,"stop":1741278532137,"duration":4910},"status":"passed","severity":"critical"},{"uid":"dd5d0f4d9a07c45b","name":"setUp","time":{"start":1739331732668,"stop":1739331732670,"duration":2},"status":"broken","severity":"normal"}]

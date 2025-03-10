@@ -1,1 +1,1 @@
-{"total":1,"items":[{"uid":"ca29b8c59437bf16089a98e8c5da33ca","name":"fullCheckout","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}}]}
+{"total":1,"items":[{"uid":"ca29b8c59437bf16089a98e8c5da33ca","name":"fullCheckout","statistic":{"failed":0,"broken":1,"skipped":0,"passed":1,"unknown":0,"total":2}}]}

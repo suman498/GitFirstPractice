@@ -1,2 +1,3 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"Test to validate addition of item in cart and completion of buying process","4961","To check end to end flow","fullCheckout","Tue Feb 11 23:44:15 IST 2025","passed","Tue Feb 11 23:44:20 IST 2025","test.FullCheckoutTest","fullCheckout","test.FullCheckoutTest","fullCheckoutTest"
+"Test to validate addition of item in cart and completion of buying process","4910","To check end to end flow","fullCheckout","Thu Mar 06 21:58:47 IST 2025","passed","Thu Mar 06 21:58:52 IST 2025","test.FullCheckoutTest","fullCheckout","test.FullCheckoutTest","fullCheckoutTest"
+"","2","setUp","fullCheckout","Wed Feb 12 09:12:12 IST 2025","broken","Wed Feb 12 09:12:12 IST 2025","test.FullCheckoutTest","fullCheckout","test.FullCheckoutTest","setUp"
