@@ -1,0 +1,8 @@
+<suite name="DemoBlazeLogin">
+    <test name="DemoBlazeLogin">
+        <classes>
+            <class name="tests.loginTest"/>
+        </classes>
+
+    </test>
+</suite>
