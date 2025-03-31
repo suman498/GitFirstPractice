@@ -7,14 +7,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import utils.TestDataProvider;
 import utils.configReader;
-import utils.inputExcelReader;
-
-import java.util.Map;
 
 public class LoginTest {
     WebDriver driver;
