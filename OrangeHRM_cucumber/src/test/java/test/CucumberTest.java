@@ -1,4 +1,4 @@
-package utils;
+package test;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -6,11 +6,11 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
     features = "src/test/resources/features",
-            glue = "Test",
-            plugin = {"pretty","html:target/cucumber-reports","json:target/cucumber-reports-json"},
+            glue = "test",
+            plugin = {"pretty","html:target/cucumber-reports.html","json:target/cucumber-reports-json"},
             monochrome = true,
             publish = true
 )
-public class testRunner extends AbstractTestNGCucumberTests {
+public class CucumberTest extends AbstractTestNGCucumberTests {
 
 }

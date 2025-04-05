@@ -1,7 +1,7 @@
 <suite name="OrangeHRM_Test">
     <test name="LoginTest">
         <classes>
-            <class name="utils.testRunner"/>
+            <class name="test.CucumberTest"/>
         </classes>
     </test>
 </suite>
