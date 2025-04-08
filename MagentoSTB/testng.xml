@@ -1,0 +1,7 @@
+<suite name="MagentoSTB">
+    <test name="EndToEnd Testing of Magento STB">
+        <classes>
+            <class name="test.EndToEndTest"/>
+        </classes>
+    </test>
+</suite>
