@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -42,6 +44,13 @@ public class CustomerLogin {
     public void setEmail(String mail) {
         try{
             wait.until(ExpectedConditions.visibilityOf(email));
+
+            String pageTitle = driver.findElement(By.xpath("//h1/span")).getText();
+            Assert.assertEquals(
+                    pageTitle,
+                    "Customer Login",
+                    "Login Page not opened properly");
+
             email.sendKeys(mail);
 
         } catch (NoSuchElementException e) {
@@ -54,6 +63,7 @@ public class CustomerLogin {
 
     public void setPass(String pass) {
         try{
+
             wait.until(ExpectedConditions.visibilityOf(password));
             password.sendKeys(pass);
 
