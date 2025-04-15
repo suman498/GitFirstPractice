@@ -120,6 +120,7 @@ public class Homepage {
 
     }
 
+    //Nesting CustomerLogin POM
     public CustomerLogin signIn(){
         try{
             wait.until(ExpectedConditions.visibilityOf(signIn));
@@ -131,6 +132,12 @@ public class Homepage {
         }
 
         return new CustomerLogin(driver);
+    }
+
+
+    //Nesting POMs of HomePage With prodTYpePage
+    public prodTypePage prodTypeList(){
+        return new prodTypePage(driver);
     }
 
     public void signOut(){

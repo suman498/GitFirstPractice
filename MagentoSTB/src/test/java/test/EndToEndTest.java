@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import pages.CustomerLogin;
 import pages.Homepage;
+import pages.prodPage;
 import utils.ConfigReader;
 import utils.ExcelUtils;
 
@@ -26,6 +27,8 @@ public class EndToEndTest {
     WebDriver driver;
     WebDriverWait wait;
     pages.Homepage home;
+    pages.prodTypePage prod;
+    prodPage product;
 
     ExtentReports extent;
     ExtentTest test;
@@ -169,16 +172,13 @@ public class EndToEndTest {
             for(int i=0;i<prod_list.length;i++){
 
                 //Navigating to Correct Product Type
-                navigateTo(prodType_list[0]);
+                navigateTo(prodType_list[i]);
 
                 //SelectProduct
-                selectProd();
+                selectProd(prodType_list[i],prod_list[i]);
 
-                //Select Colour Size Quantity
-                selectvariant();
-
-                //cartAddButton Click -- make a new POM Page for products
-                cartAdd;
+                //Adding into Cart
+                cartAddition(prod_list[i],prodSize_list[i],prodColour_list[i],prodQuantity_list[i]);
 
             }
 
@@ -190,6 +190,45 @@ public class EndToEndTest {
 
 
     }
+
+    public void selectProd(String item,String prodName){
+        try{
+            String prodType="";
+            if(item.contains("Bras & Tanks")){
+                prodType="Bras & Tanks";
+            }
+            else if(item.contains("Hoodies & Sweatshirts")){
+                prodType="Hoodies & Sweatshirts";
+            }
+            else{
+                prodType=item.split(" ")[1];
+            }
+            prod = home.prodTypeList();
+            //Nesting prodTypePage to prodPage
+            product = prod.findProd(prodType,prodName);
+
+
+
+        } catch (Exception e) {
+            System.out.println("Error in selectProd : Unable to find "+prod+" in page");
+            e.printStackTrace();
+        }
+    }
+
+    public void cartAddition(String prodName,String prodSize,String prodColor,String prodQuantity){
+        try{
+            product.verify(prodName);
+            product.setColor(prodColor);
+            product.setQuantity(prodQuantity);
+            product.setSize(prodSize);
+
+
+        } catch (Exception e) {
+            System.out.println("Error in cartAddition Method");
+            e.printStackTrace();
+        }
+    }
+
 
 
     @AfterMethod
