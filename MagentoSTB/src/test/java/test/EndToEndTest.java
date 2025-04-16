@@ -218,9 +218,10 @@ public class EndToEndTest {
     public void cartAddition(String prodName,String prodSize,String prodColor,String prodQuantity){
         try{
             product.verify(prodName);
+            product.setSize(prodSize);
             product.setColor(prodColor);
             product.setQuantity(prodQuantity);
-            product.setSize(prodSize);
+
 
 
         } catch (Exception e) {
