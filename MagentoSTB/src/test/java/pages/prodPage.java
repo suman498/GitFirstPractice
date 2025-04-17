@@ -1,15 +1,14 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.List;
 
@@ -18,6 +17,7 @@ public class prodPage {
     private WebDriver driver;
     public WebDriverWait wait;
     public JavascriptExecutor js;
+    public File src;
 
     @FindBy(xpath = "//h1/span")
     public WebElement prodTitle;
@@ -30,6 +30,21 @@ public class prodPage {
 
     @FindBy(xpath = "//div[contains(@id,'option-label-color')]")
     public List<WebElement> prodColor_list;
+
+    @FindBy(xpath = "//input[@id='qty']")
+    public WebElement noOfProds;
+
+    @FindBy(id = "product-addtocart-button")
+    public WebElement addToCartButton;
+
+    @FindBy(xpath = "//a[contains(@class,'showcart')]")
+    public WebElement cartImage;
+
+    @FindBy(xpath = "//a[@class='action viewcart']")
+    public WebElement viewEditCart;
+
+
+
 
     public prodPage(WebDriver d){
         this.driver=d;
@@ -90,7 +105,13 @@ public class prodPage {
 
     public void setQuantity(String prodQuantity){
         try{
+            wait.until(ExpectedConditions.visibilityOf(noOfProds));
+            if(Integer.parseInt(prodQuantity)>1){
+                //Only Update when quantity is more than 1
+                noOfProds.clear();
+                noOfProds.sendKeys(prodQuantity);
 
+            }
         } catch (Exception e) {
             System.out.println("Error in setQuantity Method in prodPage");
             throw new RuntimeException(e);
@@ -113,10 +134,38 @@ public class prodPage {
 
     public void addToCart() {
         try{
+            src=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(src,new File("screenshots/Item1 Added.png"));
+            addToCartButton.click();
+
+
+
+            //ScrollUpto Cart image
+            js.executeScript("arguments[0].scrollIntoView(true);",cartImage);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//div[contains(@class,'success')]/div"
+                    )));
+            WebElement addSucessMsg= driver.findElement(By.xpath("//div[contains(@class,'success')]/div"));
+            Assert.assertTrue(addSucessMsg.isDisplayed(),
+                    "Item not added in cart");
 
         } catch (Exception e) {
-            System.out.println("Error in verify Method in prodPage");
+            System.out.println("Error in addtoCart Method in prodPage");
             throw new RuntimeException(e);
         }
+    }
+
+    public shoppingCartPage openCart(){
+        try{
+            cartImage.click();
+            wait.until(ExpectedConditions.visibilityOf(viewEditCart));
+            viewEditCart.click();
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return new shoppingCartPage(driver);
     }
 }

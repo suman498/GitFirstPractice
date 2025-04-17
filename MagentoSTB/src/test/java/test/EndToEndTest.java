@@ -10,9 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-import pages.CustomerLogin;
-import pages.Homepage;
-import pages.prodPage;
+import pages.*;
 import utils.ConfigReader;
 import utils.ExcelUtils;
 
@@ -29,6 +27,8 @@ public class EndToEndTest {
     pages.Homepage home;
     pages.prodTypePage prod;
     prodPage product;
+    shoppingCartPage cart;
+    checkoutPage checkout;
 
     ExtentReports extent;
     ExtentTest test;
@@ -83,6 +83,8 @@ public class EndToEndTest {
                         data.get("Colour"),
                         data.get("QuantityToAdd")
                 );
+                //Display Products in cart and print total payable
+                displayCart();
                 break;
 
             case "TC003":
@@ -182,6 +184,10 @@ public class EndToEndTest {
 
             }
 
+
+
+
+
         } catch (Exception e) {
             System.out.println("Error in Add to Cart method : Unable to add to Cart");
             throw new RuntimeException(e);
@@ -221,11 +227,29 @@ public class EndToEndTest {
             product.setSize(prodSize);
             product.setColor(prodColor);
             product.setQuantity(prodQuantity);
+            product.addToCart();
 
 
 
         } catch (Exception e) {
             System.out.println("Error in cartAddition Method");
+            e.printStackTrace();
+        }
+    }
+
+    public void displayCart(){
+        try{
+            //Nesting productPage POM with Shopping Cart Page POM
+            cart = product.openCart();
+            cart.orderTotal();
+
+            //Proceeding with Checkout
+            //Nesting shoppingcartPage POM with checkout POM
+            checkout = cart.checkout();
+
+
+        } catch (Exception e) {
+            System.out.println("Error in display cart method in test");
             e.printStackTrace();
         }
     }

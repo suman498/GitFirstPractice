@@ -44,8 +44,31 @@ public class ExcelUtils {
                 Map<String,String> rowData = new HashMap<>();
                 for(int j=0;j<totCols;j++){
                     String key = headers.get(j);
-                    String value = (row.getCell(j) != null) ? row.getCell(j).toString() : "";
-                    rowData.put(key,value);
+                    //String value = (row.getCell(j) != null) ? row.getCell(j).toString() : "";
+                    String value = "";
+                    if (row.getCell(j) != null) {
+                        switch (row.getCell(j).getCellType()) {
+                            case STRING:
+                                value = row.getCell(j).getStringCellValue();
+                                break;
+                            case NUMERIC:
+                                // Avoid .0 on integer-like doubles
+                                double numericValue = row.getCell(j).getNumericCellValue();
+                                if (numericValue == (int) numericValue) {
+                                    value = String.valueOf((int) numericValue);
+                                } else {
+                                    value = String.valueOf(numericValue);
+                                }
+                                break;
+                            case BOOLEAN:
+                                value = String.valueOf(row.getCell(j).getBooleanCellValue());
+                                break;
+                            default:
+                                value = row.getCell(j).toString();
+                        }
+                    }
+                    rowData.put(key, value.trim());
+
 
                 }
                 testData.add(new Object[]{rowData});
