@@ -1,0 +1,7 @@
+<suite name="API Testing">
+    <test name="GETMethod">
+        <classes>
+            <class name ="apiTests.GetAPITest"/>
+        </classes>
+    </test>
+</suite>
