@@ -1,0 +1,7 @@
+<suite name="API Testing">
+    <test name="PUTMethod">
+        <classes>
+            <class name ="apiTests.PutAPITest"/>
+        </classes>
+    </test>
+</suite>

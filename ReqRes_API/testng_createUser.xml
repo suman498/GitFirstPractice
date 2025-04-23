@@ -1,0 +1,7 @@
+<suite name="API Testing">
+    <test name="PostMethod">
+        <classes>
+            <class name ="apiTests.PostAPITest"/>
+        </classes>
+    </test>
+</suite>

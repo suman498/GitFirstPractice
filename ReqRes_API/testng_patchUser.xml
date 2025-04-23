@@ -1,0 +1,7 @@
+<suite name="API Testing">
+    <test name="PATCHMethod">
+        <classes>
+            <class name ="apiTests.PatchAPITest"/>
+        </classes>
+    </test>
+</suite>
