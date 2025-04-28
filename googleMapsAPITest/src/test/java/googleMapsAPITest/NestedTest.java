@@ -70,6 +70,7 @@ public class NestedTest {
 		System.out.println(putResponse.asPrettyString());
 		
 		
+		
 		//GET Method
 		Response getResponse = 
 				given()

@@ -1,0 +1,7 @@
+<suite name = "GoogleMapsAPITest">
+	<test name ="ComplexJsonParse Test">
+		<classes>
+			<class name = "googleMapsAPITest.ComplexJsonParse"/>
+		</classes>
+	</test>
+</suite>
