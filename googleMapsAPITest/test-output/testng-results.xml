@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-05-28T09:00:29 IST" name="Default suite" finished-at="2025-05-28T09:00:31 IST" duration-ms="2454">
+  <suite started-at="2025-06-06T07:49:59 IST" name="googleMapsAPI" finished-at="2025-06-06T07:50:00 IST" duration-ms="1521">
     <groups>
     </groups>
-    <test started-at="2025-05-28T09:00:29 IST" name="Default test" finished-at="2025-05-28T09:00:31 IST" duration-ms="2454">
-      <class name="googleMapsAPI_Serialization.AddPlaceAPI">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:googleMapsAPI_Serialization.AddPlaceAPI@206a70ef]" started-at="2025-05-28T09:00:29 IST" name="setUp" finished-at="2025-05-28T09:00:29 IST" duration-ms="324" status="PASS">
+    <test started-at="2025-06-06T07:49:59 IST" name="AddTest" finished-at="2025-06-06T07:50:00 IST" duration-ms="1521">
+      <class name="googleMapsAPITest.AddTest">
+        <test-method is-config="true" signature="setUP()[pri:0, instance:googleMapsAPITest.AddTest@6771beb3]" started-at="2025-06-06T07:49:59 IST" name="setUP" finished-at="2025-06-06T07:49:59 IST" duration-ms="287" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="addPlaceSerialization()[pri:0, instance:googleMapsAPI_Serialization.AddPlaceAPI@206a70ef]" started-at="2025-05-28T09:00:29 IST" name="addPlaceSerialization" finished-at="2025-05-28T09:00:31 IST" duration-ms="2096" status="PASS">
+        </test-method> <!-- setUP -->
+        <test-method signature="addAPITest()[pri:0, instance:googleMapsAPITest.AddTest@6771beb3]" started-at="2025-06-06T07:49:59 IST" name="addAPITest" finished-at="2025-06-06T07:50:00 IST" duration-ms="1202" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- addPlaceSerialization -->
-      </class> <!-- googleMapsAPI_Serialization.AddPlaceAPI -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- addAPITest -->
+      </class> <!-- googleMapsAPITest.AddTest -->
+    </test> <!-- AddTest -->
+  </suite> <!-- googleMapsAPI -->
 </testng-results>

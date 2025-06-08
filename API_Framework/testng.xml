@@ -1,0 +1,7 @@
+<suite name="API Framework">
+  <test name="CucumberTests">
+    <classes>
+      <class name="cucumber.Options.TestRunner" />
+    </classes>
+  </test>
+</suite>

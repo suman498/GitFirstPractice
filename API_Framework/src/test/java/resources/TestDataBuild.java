@@ -34,4 +34,8 @@ public class TestDataBuild {
 		
 		return obj;
 	}
+	
+	public String deletePlaceDataBuild(String placeId) {
+		return "{\n    \"place_id\":\""+placeId+"\"\n}";
+	}
 }
